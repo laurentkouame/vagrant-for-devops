@@ -1,0 +1,42 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+PROVIDER = "virtualbox"
+NETWORK = "private_network"
+BOX = "geerlingguy/centos7"
+BOX_URL = "../My_Box/CentOS-7.box"
+MEMORY = 1024
+CPUS = 1
+
+Vagrant.configure("2") do |config|
+  
+  # Configure load balancer machine
+  config.vm.define "lb" do |lb|
+    lb.vm.box = BOX_URL
+    lb.vm.network NETWORK, ip: "192.168.56.10"
+  end
+  config.vm.provider PROVIDER do |vb|
+    vb.memory = MEMORY
+    vb.cpus = CPUS
+  end
+
+  # Configure first web machine
+  config.vm.define "web1" do |web1|
+    web1.vm.box = BOX_URL
+    web1.vm.network NETWORK, ip: "192.168.56.11"
+  end
+  config.vm.provider PROVIDER do |vb|
+    vb.memory = MEMORY
+    vb.cpus = CPUS
+  end
+
+  # Configure second web machine
+  config.vm.define "web2" do |web2|
+    web2.vm.box = BOX_URL
+    web2.vm.network NETWORK, ip: "192.168.56.12"
+  end
+  config.vm.provider PROVIDER do |vb|
+    vb.memory = MEMORY
+    vb.cpus = CPUS
+  end
+end
