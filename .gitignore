@@ -1,0 +1,3 @@
+vagrant-jenkins/.vagrant*
+vagrant-nginx/.vagrant*
+vagrant-puppet/.vagrant*
